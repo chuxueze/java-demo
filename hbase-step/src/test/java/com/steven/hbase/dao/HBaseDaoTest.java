@@ -12,6 +12,8 @@ package com.steven.hbase.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.util.Bytes;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -92,5 +94,42 @@ public class HBaseDaoTest {
 		keys.add("002");
 		Assert.assertTrue(HBaseDao.deleteDataByRowkeys("my_table", keys));
 		System.out.println("【end】: testDeleteDataByRowkeys");
+	}
+
+	/**
+	 * testGetResultByRowkey:查询指定Rowkey值. <br/>
+	 * 【适用条件（可选）】.<br/>
+	 * 【执行流程 （可选）】.<br/>
+	 * 【使用方法（可选）】.<br/>
+	 * 【注意事项（可选）】.<br/>
+	 * 
+	 * @author Steven
+	 */
+	@Test
+	public void testGetResultByRowkey() {
+		System.out.println("【start】: testGetResultByRowkey");
+		Result result = HBaseDao.getResultByRowkey("my_table", "001");
+		String name = Bytes.toString(result.getValue(Bytes.toBytes("info"), Bytes.toBytes("name")));
+		System.out.println("获取到的值为：" + name);
+		Assert.assertEquals(name, "liu bei");
+		System.out.println("【end】: testGetResultByRowkey");
+	}
+
+	/**
+	 * testGetResultByRowkeyAndColum:查询指定列值. <br/>
+	 * 【适用条件（可选）】.<br/>
+	 * 【执行流程 （可选）】.<br/>
+	 * 【使用方法（可选）】.<br/>
+	 * 【注意事项（可选）】.<br/>
+	 * 
+	 * @author Steven
+	 */
+	@Test
+	public void testGetResultByRowkeyAndColum() {
+		System.out.println("【start】: testGetResultByRowkeyAndColum");
+		String result = HBaseDao.getResultByRowkeyAndColum("my_table", "001", "info", "name");
+		System.out.println("获取到的值为：" + result);
+		Assert.assertEquals(result, "liu bei");
+		System.out.println("【end】: testGetResultByRowkeyAndColum");
 	}
 }

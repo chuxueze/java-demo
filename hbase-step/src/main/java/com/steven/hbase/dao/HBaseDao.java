@@ -22,7 +22,9 @@ import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
 import org.apache.hadoop.hbase.client.Delete;
+import org.apache.hadoop.hbase.client.Get;
 import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.Table;
 import org.apache.hadoop.hbase.util.Bytes;
 
@@ -45,7 +47,7 @@ public class HBaseDao {
 		conf.set("hbase.rootdir", "hdfs://hadoop-01:9000/hbase");
 		// 设置Zookeeper
 		conf.set("hbase.zookeeper.quorum", "hadoop-01,hadoop-02,hadoop-03");
-		// zookeeper端口
+		// Zookeeper端口
 		conf.set("hbase.zookeeper.property.clientPort", "2181");
 	}
 
@@ -175,7 +177,7 @@ public class HBaseDao {
 	// TODO:批量增加key-value键值对 addRecords
 
 	// TODO：获取指定Rowkey的值
-	
+
 	// TODO：删除列族 deleteColumnFamilies
 
 	/**
@@ -186,8 +188,10 @@ public class HBaseDao {
 	 * 【注意事项（可选）】.<br/>
 	 * 
 	 * @author Steven
-	 * @param strTableName 数据表
-	 * @param lstRowKeys 待删除的Rowkey列表
+	 * @param strTableName
+	 *            数据表
+	 * @param lstRowKeys
+	 *            待删除的Rowkey列表
 	 * @return
 	 */
 	public static boolean deleteDataByRowkeys(String strTableName, List<String> lstRowKeys) {
@@ -211,6 +215,71 @@ public class HBaseDao {
 			e.printStackTrace();
 			System.out.println("Delete recoreds " + lstRowKeys + " from 【" + strTableName + "】 fail.");
 			result = false;
+		}
+		return result;
+	}
+
+	/**
+	 * getResultByRowkey:获取指定Rowkey的结果. <br/>
+	 * 【适用条件（可选）】.<br/>
+	 * 【执行流程 （可选）】.<br/>
+	 * 【使用方法（可选）】.<br/>
+	 * 【注意事项（可选）】.<br/>
+	 * 
+	 * @author Steven
+	 * @param strTableName
+	 *            数据表
+	 * @param strRowkey
+	 *            待查询的Rowkey
+	 * @return 查询的Result结果对象
+	 */
+	public static Result getResultByRowkey(String strTableName, String strRowkey) {
+		// 执行结果
+		Result result = null;
+
+		try {
+			Connection connection = ConnectionFactory.createConnection(conf);
+			Table table = connection.getTable(TableName.valueOf(strTableName));
+			Get get = new Get(Bytes.toBytes(strRowkey));
+			result = table.get(get);
+			table.close();
+			connection.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = null;
+		}
+
+		return result;
+	}
+
+	/**
+	 * getResultByRowkeyAndColum:查询指定的某列. <br/>
+	 * 【适用条件（可选）】.<br/>
+	 * 【执行流程 （可选）】.<br/>
+	 * 【使用方法（可选）】.<br/>
+	 * 【注意事项（可选）】.<br/>
+	 * 
+	 * @author Steven
+	 * @param strTableName
+	 *            数据表
+	 * @param strRowkey
+	 *            待查询的Rowkey
+	 * @param strFamilyName
+	 *            列族名
+	 * @param strColumnName
+	 *            列名
+	 * @return 查询到的结果值
+	 */
+	public static String getResultByRowkeyAndColum(String strTableName, String strRowkey, String strFamilyName,
+			String strColumnName) {
+		// 执行结果
+		String result = null;
+		try {
+			Result searchResult = getResultByRowkey(strTableName, strRowkey);
+			result = Bytes.toString(searchResult.getValue(Bytes.toBytes(strFamilyName), Bytes.toBytes(strColumnName)));
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = null;
 		}
 		return result;
 	}
