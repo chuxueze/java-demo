@@ -9,6 +9,9 @@
 
 package com.steven.hbase.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -68,8 +71,26 @@ public class HBaseDaoTest {
 	public void testAddRecord() {
 		System.out.println("【start】: testAddRecord");
 		Assert.assertTrue(HBaseDao.addRecord("my_table", "001", "info", "name", "liu bei"));
-		// Assert.assertTrue(HBaseDao.deleteTable("my_table"));
+		Assert.assertTrue(HBaseDao.addRecord("my_table", "002", "info", "name", "guan yu"));
 		System.out.println("【end】: testAddRecord");
 	}
 
+	/**
+	 * testDeleteDataByRowkeys:测试删除指定Rowkeys的数据. <br/>
+	 * 【适用条件（可选）】.<br/>
+	 * 【执行流程 （可选）】.<br/>
+	 * 【使用方法（可选）】.<br/>
+	 * 【注意事项（可选）】.<br/>
+	 * 
+	 * @author Steven
+	 */
+	@Test
+	public void testDeleteDataByRowkeys() {
+		System.out.println("【start】: testDeleteDataByRowkeys");
+		List<String> keys = new ArrayList<String>();
+		keys.add("001");
+		keys.add("002");
+		Assert.assertTrue(HBaseDao.deleteDataByRowkeys("my_table", keys));
+		System.out.println("【end】: testDeleteDataByRowkeys");
+	}
 }
