@@ -1,0 +1,22 @@
+
+http://restapi.amap.com/v3/weather/weatherInfo?key=389880a06e3f893ea46036f030c94700&city=深圳
+
+{
+    "status": "1",
+    "count": "1",
+    "info": "OK",
+    "infocode": "10000",
+    "lives": [
+        {
+            "province": "广东",
+            "city": "深圳市",
+            "adcode": "440300",
+            "weather": "多云",
+            "temperature": "11",
+            "winddirection": "东北",
+            "windpower": "9",
+            "humidity": "60",
+            "reporttime": "2017-12-17 00:00:00"
+        }
+    ]
+}

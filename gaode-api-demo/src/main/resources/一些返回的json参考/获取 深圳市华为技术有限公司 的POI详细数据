@@ -1,0 +1,78 @@
+http://restapi.amap.com/v3/place/detail?key=389880a06e3f893ea46036f030c94700&id=B02F38IOYE
+
+
+{
+    "status": "1",
+    "count": "1",
+    "info": "OK",
+    "infocode": "10000",
+    "pois": [
+        {
+            "id": "B02F38IOYE",
+            "name": "深圳市华为技术有限公司",
+            "tag": [],
+            "type": "公司企业;知名企业;知名企业",
+            "typecode": "170100",
+            "biz_type": [],
+            "address": "华为基地",
+            "location": "114.059143,22.653265",
+            "tel": "0755-28780808",
+            "postcode": [],
+            "website": [],
+            "email": [],
+            "pcode": "440000",
+            "pname": "广东省",
+            "citycode": "0755",
+            "cityname": "深圳市",
+            "adcode": "440307",
+            "adname": "龙岗区",
+            "importance": [],
+            "shopid": [],
+            "shopinfo": "0",
+            "poiweight": [],
+            "gridcode": "3314708412",
+            "distance": [],
+            "navi_poiid": "F50F017001_57520;58064;159540",
+            "entr_location": "114.05973,22.651802",
+            "business_area": "坂田",
+            "exit_location": [],
+            "match": "0",
+            "recommend": "0",
+            "timestamp": [],
+            "indoor_map": "0",
+            "indoor_data": {
+                "cpid": [],
+                "floor": [],
+                "truefloor": [],
+                "cmsid": []
+            },
+            "indoor_src": [],
+            "groupbuy_num": "0",
+            "discount_num": "0",
+            "biz_ext": {
+                "rating": "3.1",
+                "cost": []
+            },
+            "event": [],
+            "deep_info": {
+                "deepsrc": []
+            },
+            "rich_content": [],
+            "children": [],
+            "photos": [
+                {
+                    "title": [],
+                    "url": "http://store.is.autonavi.com/showpic/98754e56fc22ed155d3b49ee9661fa40"
+                },
+                {
+                    "title": [],
+                    "url": "http://aos-cdn-image.amap.com/sns/ugccomment/0e0749cf-1734-4f63-ab79-83c934f7a5ce.png"
+                },
+                {
+                    "title": [],
+                    "url": "http://store.is.autonavi.com/showpic/187d319803aef444f9011047ab5d73ca"
+                }
+            ]
+        }
+    ]
+}
