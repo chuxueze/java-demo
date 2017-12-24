@@ -17,6 +17,8 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.steven.temp.hbase.dao.HBaseDao;
+
 /**
  * ClassName:HBaseDaoTest <br/>
  * Function: 测试HBase DAO操作. <br/>

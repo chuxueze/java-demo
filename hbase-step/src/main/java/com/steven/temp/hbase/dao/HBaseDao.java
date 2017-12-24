@@ -7,7 +7,7 @@
  * 
 */
 
-package com.steven.hbase.dao;
+package com.steven.temp.hbase.dao;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -173,12 +173,6 @@ public class HBaseDao {
 		}
 		return result;
 	}
-
-	// TODO:批量增加key-value键值对 addRecords
-
-	// TODO：获取指定Rowkey的值
-
-	// TODO：删除列族 deleteColumnFamilies
 
 	/**
 	 * deleteDataByRowkeys:删除指定Rowkey的值. <br/>
